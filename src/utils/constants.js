@@ -247,9 +247,9 @@ const validateData = (data1, data2) => {
 }
 
 const CalculateQi = (data, standardValues) => {
-//   let formDataObj = {};
-//   data.forEach((value, key) => (formDataObj[key] = value));
-  const ANALYZED_DATA = lodash.cloneDeep(data);
+  let formDataObj = {};
+  Object.keys(data).forEach(key =>formDataObj[key] = parseFloat(data[key]));
+  const ANALYZED_DATA = lodash.cloneDeep(formDataObj);
   let analyzedData = lodash.cloneDeep(ANALYZED_DATA);
   if (!validateData(analyzedData, standardValues)) {
     throw Error("Invalid")
@@ -258,7 +258,7 @@ const CalculateQi = (data, standardValues) => {
     throw Error("Invalid")
   }
   let qi = lodash.cloneDeep(analyzedData);
-  Object.keys(data).forEach((key) => {
+  Object.keys(formDataObj).forEach((key) => {
     if (qi[key] != null && (IDEAL_VALUES)[key] != null && (standardValues)[key] != null) {
       let va_vi = qi[key] - (IDEAL_VALUES)[key];
       let vs_vi = (standardValues)[key] - (IDEAL_VALUES)[key];

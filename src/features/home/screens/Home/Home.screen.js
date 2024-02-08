@@ -44,7 +44,7 @@ export default function HomeScreen() {
     <StyledSafeAreaView>
       <ScrollView>
         <StyledView>
-          <View style={{ flex: 1, height: 60, flexDirection: "row" }}>
+          <View style={{ flex: 1, flexDirection: "row" }}>
             <BrandText style={{ color: "rgb(134 239 172)" }}>Help</BrandText>
             <BrandText style={{ color: "rgb(147 197 253)" }}>Chai</BrandText>
           </View>

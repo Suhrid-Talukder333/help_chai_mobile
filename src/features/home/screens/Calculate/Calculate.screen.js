@@ -17,6 +17,7 @@ import {
   CalculateWaterWHO,
 } from "../../../../utils/constants";
 import Result from "./result";
+import { values } from "lodash";
 
 const BigText = styled.Text`
   text-align: center;
@@ -103,12 +104,11 @@ const CalculateScreen = () => {
     console.log(value, "value")
       onChangeFormValues({
         ...formValues,
-        [index]: value ? parseFloat(value) : "",
+        [index]: value ? value : "",
       });
     };
 
   const calculate = () => {
-    console.log(formValues)
     const bd = CalculateWaterBD(formValues)
     const who = CalculateWaterWHO(formValues)
     setBdResult(bd)
