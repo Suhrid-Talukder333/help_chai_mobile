@@ -15,16 +15,23 @@ import Svg, { Path, G, Defs, ClipPath } from "react-native-svg";
 const BrandText = styled.Text`
   font-size: 25px;
   font-weight: bold;
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const BiggerText = styled.Text`
   font-size: 10px;
   font-weight: bold;
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const StyledSafeAreaView = styled.SafeAreaView`
+height: 100%;
+  width: 100%;
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
+const StyledText = styled.Text`
+  color: ${(props) => props.theme.colors.text.primary};
+`
 
 const StyledView = styled.View`
   display: flex;
@@ -74,13 +81,13 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               Discover our commitment to water safety. We follow the Water
               Quality Index guidelines, assessing key parameters like pH,
               dissolved oxygen, and turbidity. Unveil the secrets behind our
               water quality evaluation for an informed perspective on your water
               safety.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledSubView>
@@ -107,14 +114,14 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               pH measures the acidity or alkalinity of water. Ideal levels range
               from 6.5 to 8.5. The safe range for drinking water pH levels is
               between 6.5 and 8.5. This range is considered optimal for human
               consumption and ensures that the water is free from harmful
               contaminants. Drinking water with a pH outside this range may
               affect its taste, quality, and safety.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledSubView>
@@ -141,14 +148,14 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               Turbidity measures water clarity. Clear water allows light
               penetration for aquatic plants. our drinking water is almost
               always clear (very low turbidity). Other water, such as the creek
               behind your house after a rainstorm, is likely to be highly
               turbid—brown with floating sediment. Turbidity is the clarity of
               water and it is an important factor in water quality
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledSubView>
@@ -175,14 +182,14 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               EC indicates the ability of water to conduct an electric current,
               related to dissolved ions. Electrical conductivity (EC) is a
               measurement of water ability to conduct electricity. EC is related
               to water temperature and the total concentration, mobility,
               valence and relative concentration of ions. Generally speaking,
               higher EC means more electrolytes in the water.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledSubView>
@@ -209,14 +216,14 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               TDS measures the total amount of dissolved substances, including
               minerals. Total dissolved solids (TDS) is the total amount of
               solids dissolved in the water, including soluble hydrogen
               carbonate ions, chloride salts, sulphates, calcium, magnesium,
               sodium, potassium, volatile solids and non-volatile solids. Its
               concentration will affect the taste of drinking water.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledSubView>
@@ -243,13 +250,13 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               Presence of coliform bacteria indicates contamination from fecal
               matter. Total coliform counts give a general indication of the
               sanitary condition of a water supply. Total coliforms include
               bacteria that are found in the soil, in water that has been
               influenced by surface water, and in human or animal waste.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledView>
@@ -268,12 +275,12 @@ export default function GuideScreen() {
         </StyledView>
         <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               Remember, the WQI combines these parameters to provide a
               comprehensive assessment of water quality. Each parameter
               contribution to the index may vary based on local standards and
               environmental conditions.
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
       </ScrollView>

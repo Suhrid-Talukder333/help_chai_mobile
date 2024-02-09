@@ -15,10 +15,17 @@ import Svg, { Path, G, Defs, ClipPath } from "react-native-svg";
 const BrandText = styled.Text`
   font-size: 40px;
   font-weight: bold;
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const StyledSafeAreaView = styled.SafeAreaView`
+  height: 100%;
+  width: 100%;
   background-color: ${(props) => props.theme.colors.bg.primary};
+`;
+
+const StyledText = styled.Text`
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const StyledView = styled.View`
@@ -48,23 +55,25 @@ export default function HomeScreen() {
             <BrandText style={{ color: "rgb(134 239 172)" }}>Help</BrandText>
             <BrandText style={{ color: "rgb(147 197 253)" }}>Chai</BrandText>
           </View>
+        </StyledView>
+        <StyledView>
           <TextContainerView>
-            <Text style={{ fontSize: 15 }}>
+            <StyledText style={{ fontSize: 15 }}>
               This platform is designed to calculate information on water
               quality via{" "}
-              <Text style={{ fontWeight: "bold" }}>
+              <StyledText style={{ fontWeight: "bold" }}>
                 ‘Capacity Building of Youth to Improve Drinking Water Security
                 and Climate Resilience through Youth-led Participatory Sensing
                 (YPS) Model in Hatiya Island, Noakhali.‘
-              </Text>{" "}
+              </StyledText>{" "}
               project.
-            </Text>
-            <Text
+            </StyledText>
+            <StyledText
               style={{ color: "blue" }}
               onPress={() => Linking.openURL("https://helpchai.vercel.app/")}
             >
               Learn more
-            </Text>
+            </StyledText>
           </TextContainerView>
         </StyledView>
         <StyledView
@@ -76,18 +85,22 @@ export default function HomeScreen() {
             backgroundColor: "rgb(37 137 254)",
           }}
         >
-          <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+          <StyledText
+            style={{ fontSize: 15, fontWeight: "bold", color: "white" }}
+          >
             Empowering Youth{" "}
-          </Text>
-          <Text style={{ fontSize: 15, fontWeight: "bold", color: "white" }}>
+          </StyledText>
+          <StyledText
+            style={{ fontSize: 15, fontWeight: "bold", color: "white" }}
+          >
             Ensuring Water Security
-          </Text>
+          </StyledText>
         </StyledView>
         <StyledView>
           <View>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            <StyledText style={{ fontSize: 20, fontWeight: "bold" }}>
               Supported By
-            </Text>
+            </StyledText>
           </View>
         </StyledView>
         <StyledView>
@@ -133,24 +146,24 @@ export default function HomeScreen() {
         </StyledView>
         <StyledView>
           <View>
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            <StyledText style={{ fontSize: 20, fontWeight: "bold" }}>
               Organizing Partner
-            </Text>
+            </StyledText>
           </View>
         </StyledView>
         <StyledView>
           <Image source={require("./img/nstu_logo.png")} />
         </StyledView>
         <StyledView>
-          <Text>Department of Oceanography</Text>
-          <Text>Noakhali Science and Technology University</Text>
+          <StyledText>Department of Oceanography</StyledText>
+          <StyledText>Noakhali Science and Technology University</StyledText>
         </StyledView>
         <StyledView style={{ backgroundColor: "#89ABE3FF" }}>
-          <Image source={require("./img/team.png")} />
-          <Text style={{textAlign: "center"}}>
+          <StyledText style={{ textAlign: "center" }}>
             Youth-led Water Security and Climate Resilience in Hatiya Island,
             Noakhali
-          </Text>
+          </StyledText>
+          <Image source={require("./img/team.png")} />
         </StyledView>
       </ScrollView>
     </StyledSafeAreaView>

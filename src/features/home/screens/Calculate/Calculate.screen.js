@@ -8,9 +8,10 @@ import {
   ScrollView,
   Button,
   Alert,
+  TouchableOpacity,
   Image,
 } from "react-native";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import Svg, { Path, G } from "react-native-svg";
 import {
   CalculateWaterBD,
@@ -18,21 +19,27 @@ import {
 } from "../../../../utils/constants";
 import Result from "./result";
 import { values } from "lodash";
+import { Divider } from "react-native-paper";
 
 const BigText = styled.Text`
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const StyledSafeAreaView = styled.SafeAreaView`
+  height: 100%;
+  width: 100%;
   background-color: ${(props) => props.theme.colors.bg.primary};
+`;
+const StyledText = styled.Text`
+  color: ${(props) => props.theme.colors.text.primary};
 `;
 
 const StyledView = styled.View`
   display: flex;
   flex-direction: row;
-  background-color: ${(props) => props.theme.colors.bg.primary};
   padding: 5px;
   padding-left: 20px;
   flex-wrap: wrap;
@@ -58,22 +65,33 @@ const TextContainerView = styled.View`
 `;
 
 const StyledTextInput = styled.TextInput`
+  color: ${(props) => props.theme.colors.text.primary};
   height: 45px;
   margin: 12px;
   border-width: 1px;
   padding: 10px;
   border-radius: 5px;
+  background-color: ${(props) => props.theme.colors.bg.secondary};
+`;
+
+const StyledInfoView = styled.View`
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: ${(props) => props.theme.colors.textbg.primary};
 `;
 
 const initialValues = {
-  "ph": "",
-  "ec": "",
-  "tds": "",
-  "th": "",
-  "cl": "",
-  "s": "",
-  "fe": "",
-  "arsenic": "",
+  ph: "",
+  ec: "",
+  tds: "",
+  th: "",
+  cl: "",
+  s: "",
+  fe: "",
+  arsenic: "",
 };
 
 const CalculateScreen = () => {
@@ -81,18 +99,19 @@ const CalculateScreen = () => {
   const [whoResult, setWhoResult] = React.useState(null);
   const [bdResult, setBdResult] = React.useState(null);
   const [disabled, setDisabled] = React.useState(true);
+  const scrollView = React.useRef(null);
 
   const checkValidity = () => {
-    console.log(formValues)
+    console.log(formValues);
     if (
-        formValues['ph'] == "" ||
-        formValues['ec'] == "" ||
-        formValues['tds'] == "" ||
-        formValues['th'] == "" || 
-        formValues['cl'] == "" ||
-        formValues['s'] == "" ||
-        formValues['fe'] == "" ||
-        formValues['arsenic'] == "" 
+      formValues["ph"] == "" ||
+      formValues["ec"] == "" ||
+      formValues["tds"] == "" ||
+      formValues["th"] == "" ||
+      formValues["cl"] == "" ||
+      formValues["s"] == "" ||
+      formValues["fe"] == "" ||
+      formValues["arsenic"] == ""
     ) {
       setDisabled(true);
     } else {
@@ -101,40 +120,45 @@ const CalculateScreen = () => {
   };
 
   const onChange = (index, value) => {
-    console.log(value, "value")
-      onChangeFormValues({
-        ...formValues,
-        [index]: value ? value : "",
-      });
-    };
+    console.log(value, "value");
+    onChangeFormValues({
+      ...formValues,
+      [index]: value ? value : "",
+    });
+  };
 
   const calculate = () => {
-    const bd = CalculateWaterBD(formValues)
-    const who = CalculateWaterWHO(formValues)
-    setBdResult(bd)
-    setWhoResult(who)
+    const bd = CalculateWaterBD(formValues);
+    const who = CalculateWaterWHO(formValues);
+    setBdResult(bd);
+    setWhoResult(who);
+    scrollView.current.scrollToEnd();
   };
 
   const reset = () => {
     onChangeFormValues(initialValues);
     setWhoResult(null);
     setBdResult(null);
-    console.log(formValues)
-  }
+    console.log(formValues);
+  };
 
   React.useEffect(() => {
     checkValidity();
   }, [formValues]);
 
-  
   return (
     <StyledSafeAreaView>
-      <ScrollView>
+      <ScrollView ref={scrollView}>
+        <StyledInfoView>
+          <StyledText style={{ fontSize: 14 }}>
+            Please Read our Guide to learn more about WQI
+          </StyledText>
+        </StyledInfoView>
         <StyledView style={{ justifyContent: "center" }}>
           <BigText>Water Quality Test</BigText>
         </StyledView>
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>pH value</Text>
+          <StyledText>pH value</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("ph", value)}
@@ -143,7 +167,7 @@ const CalculateScreen = () => {
           placeholder="Type ph value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Electric Conductivity (EC)</Text>
+          <StyledText>Electric Conductivity (EC)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("ec", value)}
@@ -152,7 +176,7 @@ const CalculateScreen = () => {
           placeholder="Type ec value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Total Dissolved Solids (TDS)</Text>
+          <StyledText>Total Dissolved Solids (TDS)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("tds", value)}
@@ -162,7 +186,7 @@ const CalculateScreen = () => {
           placeholder="Type TDS value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Total Hardness (TH)</Text>
+          <StyledText>Total Hardness (TH)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("th", value)}
@@ -171,7 +195,7 @@ const CalculateScreen = () => {
           placeholder="Type TH value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Chloride Ion Concentration (Cl-)</Text>
+          <StyledText>Chloride Ion Concentration (Cl-)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("cl", value)}
@@ -180,7 +204,7 @@ const CalculateScreen = () => {
           placeholder="Type Cl- value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Sulfate Ion Concentration (SO4)</Text>
+          <StyledText>Sulfate Ion Concentration (SO4)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("s", value)}
@@ -189,7 +213,7 @@ const CalculateScreen = () => {
           placeholder="Type SO4 value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Iron Concentration (Fe)</Text>
+          <StyledText>Iron Concentration (Fe)</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("fe", value)}
@@ -198,7 +222,7 @@ const CalculateScreen = () => {
           placeholder="Type Fe value"
         />
         <StyledView style={{ paddingBottom: 0 }}>
-          <Text>Arsenic</Text>
+          <StyledText>Arsenic</StyledText>
         </StyledView>
         <StyledTextInput
           onChangeText={(value) => onChange("arsenic", value)}
@@ -212,17 +236,19 @@ const CalculateScreen = () => {
             disabled={disabled}
             title="Calculate"
             onPress={() => {
-              calculate()
+              calculate();
             }}
           />
-          <Button title="  Reset  " color={"red"} onPress={() => {reset()}} />
+          <Button
+            title="  Reset  "
+            color={"red"}
+            onPress={() => {
+              reset();
+            }}
+          />
         </ButtonView>
-        {
-            bdResult  && <Result result={bdResult} standard={"BD"} />
-        }
-        {
-            whoResult  && <Result result={whoResult} standard={"WHO"} />
-        }
+        {bdResult && <Result result={bdResult} standard={"BD"} />}
+        {whoResult && <Result result={whoResult} standard={"WHO"} />}
       </ScrollView>
     </StyledSafeAreaView>
   );

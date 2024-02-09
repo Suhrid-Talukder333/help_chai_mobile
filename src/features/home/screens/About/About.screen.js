@@ -9,7 +9,7 @@ import {
   Linking,
   Image,
 } from "react-native";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import Svg, { Path, G, Defs, ClipPath } from "react-native-svg";
 
 const BrandText = styled.Text`
@@ -23,6 +23,8 @@ const BiggerText = styled.Text`
 `;
 
 const StyledSafeAreaView = styled.SafeAreaView`
+  height: 100%;
+  width: 100%;
   background-color: ${(props) => props.theme.colors.bg.primary};
 `;
 
@@ -54,26 +56,23 @@ const TextContainerView = styled.View`
   border-radius: 10px;
 `;
 
+const StyledText = styled.Text`
+  color: ${(props) => props.theme.colors.text.primary};
+`
+
 export default function AboutScreen() {
+  const theme = useTheme()
   return (
     <StyledSafeAreaView>
       <ScrollView>
         <StyledView>
-          <View
-            style={{
-              flex: 1,
-              height: 60,
-              flexDirection: "row",
-              textAlign: "center",
-              justifyContent: "center",
-              alignContent: "center",
-            }}
-          >
-            <BrandText>About HelpChai</BrandText>
+        <View style={{ flex: 1, flexDirection: "row", borderStyle: "dashed", borderWidth: 5, justifyContent: "center", alignItems: "center", padding: 10, borderColor: theme.colors.text.primary }}>
+            <BrandText style={{ color: "rgb(134 239 172)" }}>Help</BrandText>
+            <BrandText style={{ color: "rgb(147 197 253)" }}>Chai</BrandText>
           </View>
         </StyledView>
-        <StyledView>
-          <Text style={{ fontSize: 20, textAlign: "justify" }}>
+        <TextContainerView>
+          <StyledText style={{ fontSize: 15, textAlign: "justify" }}>
             This research leverages ICTs to bridge communication gaps on water
             supply and quality, benefiting local to national stakeholders.
             Developing countries face challenges in effectively communicating
@@ -83,8 +82,8 @@ export default function AboutScreen() {
             to ensure sustainable development in the sector, fostering ‘Drinking
             Water Security‘ and paving the way for future innovations and
             technologies
-          </Text>
-        </StyledView>
+          </StyledText>
+        </TextContainerView>
         <StyledView>
           <Button
             title="Please Checkout our Website for more information"
