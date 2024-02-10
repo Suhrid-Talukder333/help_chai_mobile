@@ -2,7 +2,7 @@ import lodash from 'lodash'
 
 export const carouselItems = [
   {
-    img: "/images/carousel1.jpeg",
+    img: require("./img/carousel1.jpeg"),
     desc: 'Safety',
     buttonIcon: "AcademicCapIcon",
     text: "Ensure your water source is clean and uncontaminated.",
@@ -10,7 +10,7 @@ export const carouselItems = [
     ref: "Image by stockgiu on Freepik"
   },
   {
-    img: "/images/carousel3.jpeg",
+    img: require("./img/carousel3.jpeg"),
     desc: 'Boiling',
     buttonIcon: "BeakerIcon",
     text: "Boiling water is a simple yet effective method.",
@@ -18,7 +18,7 @@ export const carouselItems = [
     ref: "Image by brgfx on Freepik"
   },
   {
-    img: "/images/carousel2.jpeg",
+    img: require("./img/carousel2.jpeg"),
     desc: 'Filtering',
     buttonIcon: "FunnelIcon",
     text: "Use a reliable water filter to remove impurities and contaminants",
@@ -26,7 +26,7 @@ export const carouselItems = [
     ref: "Image by macrovector on Freepik"
   },
   {
-    img: "/images/carousel4.jpeg",
+    img: require("./img/carousel4.jpeg"),
     desc: 'Spread',
     buttonIcon: "GlobeAsiaAustraliaIcon",
     text: "Spread the message!",
@@ -210,7 +210,6 @@ const CalculateWi = (standardValues) => {
     }
   });
   const K = 1 / sum_1BySn;
-  console.log(K, "K");
   let wi = lodash.cloneDeep(standardValues);
   Object.keys(wi).forEach((key) => {
     if (wi[key] != null) {
@@ -224,7 +223,6 @@ const CalculateWi = (standardValues) => {
     }
   });
   sum_wi = Math.round(sum_wi);
-  console.log(wi, "wi")
   if (sum_wi != 1) {
     throw Error("Invalid")("Invalid")
   }
@@ -280,13 +278,11 @@ export const CalculateWaterWHO = (data) => {
       wiqi[key] = (wi[key] * qi[key]);
     }
   });
-  console.log(wiqi, "wiqi")
   let sum_wiqi = 0;
   Object.keys(wiqi).forEach((key) => {
     sum_wiqi += wiqi[key];
   });
   let result_value = lodash.round(sum_wiqi, 1);
-  console.log(result_value)
   let result_index = get_result_index(result_value);
   let result_desc = RESULT_DESC[result_index]
   let result_img_url = RESULT_IMG_URL[result_index]
@@ -320,7 +316,6 @@ export const CalculateWaterBD = (data) => {
     sum_wiqi += wiqi[key];
   });
   let result_value = lodash.round(sum_wiqi, 1);
-  console.log(result_value)
   let result_index = get_result_index(result_value);
   let result_desc = RESULT_DESC[result_index]
   let result_img_url = RESULT_IMG_URL[result_index]

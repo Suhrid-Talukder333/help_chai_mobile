@@ -22,7 +22,6 @@ const StyledText = styled.Text`
 `;
 
 const CustomDrawer = (props) => {
-  console.log(props);
   const scheme = useColorScheme();
   return (
     <View
@@ -36,7 +35,7 @@ const CustomDrawer = (props) => {
     >
       <DrawerContentScrollView {...props}>
         <ImageBackground
-          source={require("./img/goal.png")}
+          source={require("./img/HelpChai.gif")}
           style={{ padding: 80 }}
         ></ImageBackground>
         <View
@@ -77,6 +76,33 @@ const CustomDrawer = (props) => {
               }}
             >
               Website
+            </StyledText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL("https://helpchai.vercel.app/contact");
+          }}
+          style={{ paddingVertical: 15 }}
+        >
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Ionicons
+              name="call-outline"
+              style={{
+                color:
+                  scheme === "dark"
+                    ? theme.dark.colors.text.primary
+                    : theme.light.colors.text.primary,
+              }}
+              size={22}
+            />
+            <StyledText
+              style={{
+                fontSize: 15,
+                marginLeft: 5,
+              }}
+            >
+              Contact
             </StyledText>
           </View>
         </TouchableOpacity>

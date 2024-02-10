@@ -15,13 +15,14 @@ export const light = {
       success: "#138000",
     },
     tab: {
-      active: "#a3c3e0",
+      active: "#382bf0",
       deactive: "#000",
       bg: "#d9e9f8"
     },
     bg: {
       primary: "#fff",
       secondary: "#f2f5ff",
+      top: "#99ccff",
     },
     textbg: {
       primary: "#f2f5ff",
@@ -56,14 +57,15 @@ export const dark = {
     tab: {
       active: "#7ed0ec",
       deactive: "#fff",
-      bg: "#4f4f51"
+      bg: "#2f2b3a"
     },
     bg: {
       primary: "#1f1f20",
-      secondary: "#000",
+      secondary: "#282828",
+      top: "#000",
     },
     textbg: {
-      primary: "#4f4f51",
+      primary: "#282828",
       secondary: "#5a5a5a",
     },
     text: {

@@ -20,6 +20,7 @@ import {
 import Result from "./result";
 import { values } from "lodash";
 import { Divider } from "react-native-paper";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const BigText = styled.Text`
   text-align: center;
@@ -102,7 +103,6 @@ const CalculateScreen = () => {
   const scrollView = React.useRef(null);
 
   const checkValidity = () => {
-    console.log(formValues);
     if (
       formValues["ph"] == "" ||
       formValues["ec"] == "" ||
@@ -120,7 +120,6 @@ const CalculateScreen = () => {
   };
 
   const onChange = (index, value) => {
-    console.log(value, "value");
     onChangeFormValues({
       ...formValues,
       [index]: value ? value : "",
@@ -139,7 +138,6 @@ const CalculateScreen = () => {
     onChangeFormValues(initialValues);
     setWhoResult(null);
     setBdResult(null);
-    console.log(formValues);
   };
 
   React.useEffect(() => {
@@ -231,25 +229,49 @@ const CalculateScreen = () => {
           placeholder="Type Arsenic value"
         />
         <ButtonView style={{ justifyContent: "space-evenly" }}>
-          <Button
-            style={{ borderRadius: 10 }}
+          <TouchableOpacity
+            style={{
+              borderRadius: 10,
+              height: 40,
+              width: 100,
+              backgroundColor: "blue",
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: disabled ? 0.5 : 1,
+            }}
             disabled={disabled}
-            title="Calculate"
             onPress={() => {
               calculate();
             }}
-          />
-          <Button
-            title="  Reset  "
-            color={"red"}
+          >
+            <Ionicons name={"rocket"} size={15} color="white" />
+            <StyledText style={{ fontSize: 15, fontWeight: "bold" }}>
+              Calculate
+            </StyledText>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              borderRadius: 10,
+              height: 40,
+              width: 100,
+              backgroundColor: "red",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             onPress={() => {
               reset();
             }}
-          />
+          >
+            <Ionicons name={"refresh"} size={15} color="white" />
+            <StyledText style={{ fontSize: 15, fontWeight: "bold" }}>
+              Reset
+            </StyledText>
+          </TouchableOpacity>
         </ButtonView>
         {bdResult && <Result result={bdResult} standard={"BD"} />}
         {whoResult && <Result result={whoResult} standard={"WHO"} />}
       </ScrollView>
+      <StyledView style={{ height: 70 }} />
     </StyledSafeAreaView>
   );
 };

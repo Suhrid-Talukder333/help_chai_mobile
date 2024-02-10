@@ -21,17 +21,25 @@ const Drawer = createDrawerNavigator();
 
 export default function App() {
   const scheme = useColorScheme();
-  console.log(scheme);
   return (
     <>
       <PaperProvider>
         <ThemeProvider theme={scheme === "dark" ? theme.dark : theme.light}>
           <NavigationContainer>
             <Drawer.Navigator
+              screenOptions={{
+                headerShown: true,
+                headerTitle: "",
+                headerShadowVisible: false,
+                headerTintColor:
+                  scheme === "dark"
+                    ? theme.dark.colors.text.primary
+                    : theme.light.colors.text.primary,
+              }}
               drawerContent={(props) => <CustomDrawer {...props} />}
             >
               <Drawer.Screen
-                name="App"
+                name="HelpChai"
                 component={TabRoutes}
                 options={{
                   drawerIcon: ({ color }) => (
@@ -48,8 +56,8 @@ export default function App() {
                   headerStyle: {
                     backgroundColor:
                       scheme === "dark"
-                        ? theme.dark.colors.bg.primary
-                        : theme.light.colors.bg.primary,
+                        ? theme.dark.colors.bg.top
+                        : theme.light.colors.bg.top,
                   },
                 }}
               />
@@ -71,8 +79,8 @@ export default function App() {
                   headerStyle: {
                     backgroundColor:
                       scheme === "dark"
-                        ? theme.dark.colors.bg.primary
-                        : theme.light.colors.bg.primary,
+                        ? theme.dark.colors.bg.top
+                        : theme.light.colors.bg.top,
                   },
                 }}
               />
@@ -98,8 +106,8 @@ export default function App() {
                   headerStyle: {
                     backgroundColor:
                       scheme === "dark"
-                        ? theme.dark.colors.bg.primary
-                        : theme.light.colors.bg.primary,
+                        ? theme.dark.colors.bg.top
+                        : theme.light.colors.bg.top,
                   },
                 }}
               />
