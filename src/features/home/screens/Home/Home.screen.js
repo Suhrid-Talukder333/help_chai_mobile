@@ -14,7 +14,7 @@ import Svg, { Path, G, Defs, ClipPath } from "react-native-svg";
 import CustomCarousel from "../../../../components/CustomCarousel";
 
 const BrandText = styled.Text`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   color: ${(props) => props.theme.colors.text.primary};
 `;
@@ -46,9 +46,9 @@ const LogoView = styled.View`
   position: absolute;
   flex: 1;
   background-color: ${(props) => props.theme.colors.bg.top};
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  left: 0;
+  left: -10px;
   right: 0;
   height: 300px;
   width: 100%;
@@ -72,16 +72,22 @@ export default function HomeScreen() {
       <StyledScrollView>
         <LogoView>
           <Image
-            style={{width: 400, height: 250,}}
-            source={require("./img/HelpChaiHero.gif")}
+            style={{ marginTop: -60, width: 1000, height: 300 }}
+            source={require("./img/HelpChai.gif")}
           />
         </LogoView>
-        <ContainerView style={{borderTopLeftRadius: 50, borderTopRightRadius: 50}}>
+        <ContainerView
+          style={{ borderTopLeftRadius: 50, borderTopRightRadius: 50 }}
+        >
+          <StyledView>
+            <BrandText style={{ color: "rgb(134 239 172)" }}>Help</BrandText>
+            <BrandText style={{ color: "rgb(147 197 253)" }}>Chai</BrandText>
+          </StyledView>
           <StyledView>
             <TextContainerView>
               <StyledText style={{ fontSize: 16, textAlign: "center" }}>
                 This platform is designed to calculate information on water
-                quality 
+                quality
                 {/* via{" "} */}
                 {/* <StyledText style={{ fontWeight: "bold" }}>
                   ‘Capacity Building of Youth to Improve Drinking Water Security
@@ -171,7 +177,7 @@ export default function HomeScreen() {
             <Image source={require("./img/icccad_logo.png")} />
           </View>
           <StyledView>
-            <View style={{justifyContent: "center", alignItems: "center"}}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
               <StyledText style={{ fontSize: 20, fontWeight: "bold" }}>
                 Organizing Partner
               </StyledText>
@@ -181,8 +187,12 @@ export default function HomeScreen() {
             <Image source={require("./img/nstu_logo.png")} />
           </StyledView>
           <StyledView>
-            <StyledText style={{textAlign: "center"}}>Department of Oceanography</StyledText>
-            <StyledText style={{textAlign: "center"}}>Noakhali Science and Technology University</StyledText>
+            <StyledText style={{ textAlign: "center" }}>
+              Department of Oceanography
+            </StyledText>
+            <StyledText style={{ textAlign: "center" }}>
+              Noakhali Science and Technology University
+            </StyledText>
           </StyledView>
           {/* <StyledView style={{ backgroundColor: "#89ABE3FF" }}>
             <StyledText style={{ textAlign: "center" }}>
@@ -191,7 +201,7 @@ export default function HomeScreen() {
             </StyledText>
             <Image source={require("./img/team.png")} />
           </StyledView> */}
-          <StyledView style={{height: 100}} />
+          <StyledView style={{ height: 100 }} />
         </ContainerView>
       </StyledScrollView>
     </StyledSafeAreaView>

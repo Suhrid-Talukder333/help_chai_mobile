@@ -36,7 +36,7 @@ const CustomDrawer = (props) => {
       <DrawerContentScrollView {...props}>
         <ImageBackground
           source={require("./img/HelpChai.gif")}
-          style={{ padding: 80 }}
+          style={{ padding: 50, }}
         ></ImageBackground>
         <View
           style={{
